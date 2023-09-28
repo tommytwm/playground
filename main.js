@@ -26,8 +26,12 @@ document.body.appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 
 // geometry
-const geometry = new THREE.SphereGeometry(5, 64, 64);
-const material = new THREE.MeshStandardMaterial({ color: 0xffff00 });
+const radius = 5;
+const geometry = new THREE.SphereGeometry(radius, 64, 64);
+const material = new THREE.MeshStandardMaterial({
+  wireframe: true,
+  color: 0xffff00,
+});
 const sphere = new THREE.Mesh(geometry, material);
 scene.add(sphere);
 
@@ -39,8 +43,11 @@ scene.add(light);
 // This function will run on every screen refresh (i.e. 60Hz screens means 60 refreshes a second)
 function animate() {
   requestAnimationFrame(animate);
-
   controls.update();
+
+  sphere.rotation.x += 0.0025;
+  sphere.rotation.y += 0.0025;
+
   renderer.render(scene, camera);
 }
 
