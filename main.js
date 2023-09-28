@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import WebGL from "three/addons/capabilities/WebGL.js";
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
@@ -29,4 +30,10 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-animate();
+if (WebGL.isWebGLAvailable()) {
+  // Initiate function or other initializations here
+  animate();
+} else {
+  const warning = WebGL.getWebGLErrorMessage();
+  document.getElementById("container").appendChild(warning);
+}
