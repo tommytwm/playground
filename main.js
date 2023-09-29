@@ -36,9 +36,12 @@ const sphere = new THREE.Mesh(geometry, material);
 scene.add(sphere);
 
 // lights
-const light = new THREE.PointLight(0xffffff, 100, 100, 1.7);
-light.position.set(0, 10, 10);
-scene.add(light);
+const pointLight = new THREE.PointLight(0xffffff, 100, 100, 1.7);
+pointLight.position.set(0, 10, 10);
+scene.add(pointLight);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
 
 // This function will run on every screen refresh (i.e. 60Hz screens means 60 refreshes a second)
 function animate() {
